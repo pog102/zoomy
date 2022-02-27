@@ -1,0 +1,143 @@
+#!/bin/bash
+
+IT(){ 
+        eval "subject$1=IT id$1=72405402379 psw$1=Y3FP8K" 
+}
+biology(){ 
+        eval "subject$1=biology id$1= psw$1=" #leave psw$1 blank if there is no password 
+}
+chemistry(){ 
+        eval "subject$1=chemistry id$1= psw$1=" 
+}
+ethics(){ 
+        eval "subject$1=ethics id$1= psw$1=" 
+}
+english(){ 
+        eval "subject$1=english id$1= psw$1=" 
+}
+PE(){ 
+        eval "subject$1=PE id$1= psw$1=" 
+}
+music(){ 
+        eval "subject$1=music id$1= psw$1=" 
+}
+math(){ 
+        eval "subject$1=math id$1= psw$1=" 
+}
+physics(){ 
+        eval "subject$1=physics id$1= psw$1=" 
+}
+geography(){ 
+	eval "subject$1=geography id$1= psw$1=" 
+}
+german(){
+	eval "subject$1=german id$1= psw$1="  
+}
+
+day=$(date +'%A')
+day=Monday
+case $day in
+  Monday)
+	  #change it by your schedule
+	  german 1
+	  german 2
+	  math 3
+	  math 4
+	  geography 5
+	  physics 6
+	  physics 7
+	  ;;
+
+  Tuesday)
+	  english 1
+	  english 2
+	  geography 3
+	  ethics 4
+	  german 5
+	  physics 6
+	  physics 7
+
+	  ;;
+
+  Wensday)
+	  chemistry 1
+	  chemistry 2
+	  german 3
+	  german 4
+	  math 5
+	  biology 6
+	  biology 7
+	 
+	  ;;
+  Thursday)
+        english 1
+	english 2
+	math 3
+	math 4
+	IT 5
+	IT 6
+	  ;;
+   Friday)
+	math 1   
+        german 2
+        gei 3
+	PE 4
+	music 5
+	music 6
+          ;;
+  *)
+      notify-send "its the weekend"
+      exit
+    ;;
+esac
+
+time=$(($(date +"%H")*60+$(date +"%M")))
+time=400
+[ $time -le 895 ] && i=$subject7
+[ $time -le 840 ] && i=$subject6
+[ $time -le 770 ] && i=$subject5
+[ $time -le 700 ] && i=$subject4
+[ $time -le 630 ] && i=$subject3
+[ $time -le 575 ] && i=$subject2
+[ $time -le 520 ] && i=$subject1
+
+menu(){
+	[ -n "$i" ] && printf "currently: $i \n" '\e[1;34m%-6s\e[m' 
+	[ -n "$subject1" ] && printf "1. $subject1\n"
+	[ -n "$subject2" ] && printf "2. $subject2\n"
+	[ -n "$subject3" ] && printf "3. $subject3\n"
+	[ -n "$subject4" ] && printf "4. $subject4\n"
+	[ -n "$subject5" ] && printf "5. $subject5\n"
+	[ -n "$subject6" ] && printf "6. $subject6\n"
+	[ -n "$subject7" ] && printf "7. $subject7\n"
+}
+main(){
+    choice=$(menu | rofi -dmenu | cut -d. -f2 | cut -d: -f2 | tr -d "[:blank:]" )
+
+    case $choice in
+		"$subject1")
+            zoom "zoommtg://zoom.us/join?confno=$id1&pwd=$psw1"
+	    ;;
+		"$subject2")
+            zoom "zoommtg://zoom.us/join?confno=$id2&pwd=$psw2"
+	    ;;
+		"$subject3")
+	    zoom "zoommtg://zoom.us/join?confno=$id3&pwd=$psw3"
+            ;;
+		"$subject4")
+	    zoom "zoommtg://zoom.us/join?confno=$id4&pwd=$psw4"
+            ;;
+		"$subject5")
+	    zoom "zoommtg://zoom.us/join?confno=$id5&pwd=$psw5"
+            ;;
+		"$subject6")
+	    zoom "zoommtg://zoom.us/join?confno=$id6&pwd=$psw6"
+            ;;
+		"$subject7")
+	    zoom "zoommtg://zoom.us/join?confno=$id6&pwd=$psw6"
+            ;;
+
+        esac
+}
+
+main
