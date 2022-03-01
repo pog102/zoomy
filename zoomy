@@ -102,7 +102,7 @@ time=400
 [ $time -le 520 ] && i=$subject1
 
 menu(){
-	[ -n "$i" ] && printf "currently: $i \n" '\e[1;34m%-6s\e[m' 
+	[ -n "$i" ] && printf "currently: $i \n" 
 	[ -n "$subject1" ] && printf "1. $subject1\n"
 	[ -n "$subject2" ] && printf "2. $subject2\n"
 	[ -n "$subject3" ] && printf "3. $subject3\n"
