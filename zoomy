@@ -35,7 +35,7 @@ german(){
 }
 
 day=$(date +'%A')
-day=Monday
+
 case $day in
   Monday)
 	  #change it by your schedule
